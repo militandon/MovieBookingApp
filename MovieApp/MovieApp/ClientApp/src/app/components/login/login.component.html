@@ -1,64 +1,56 @@
-<div class="d-flex justify-content-center">
-  <mat-card class="my-4 w-50">
-    <mat-card-header
-      class="mat-elevation-z2 custom-card-header justify-content-between"
-    >
-      <mat-card-title class="mat-h1"> Login </mat-card-title>
+<div class="login-wrapper d-flex justify-content-center align-items-center">
+  <mat-card class="my-4 w-50 grey-card mat-elevation-z4">
+    <!-- Black Header Only -->
+    <mat-card-header class="custom-card-header black-header justify-content-between">
+      <mat-card-title class="mat-h1">Login</mat-card-title>
       <div>
         <span class="mat-h4">New User? </span>
-        <button
-          class="mat-elevation-z4"
-          mat-raised-button
-          [routerLink]="['/register']"
-        >
+        <button mat-raised-button color="accent" [routerLink]="['/register']">
           Register
         </button>
       </div>
     </mat-card-header>
 
-    @if ((error$ | async) && loginForm.errors) {
-    <mat-card-header>
+    <!-- Error Message -->
+    <mat-card-header *ngIf="(error$ | async) && loginForm.errors">
       <mat-card-subtitle>
         <mat-error>Login Failed. Username or Password is incorrect.</mat-error>
-      </mat-card-subtitle> </mat-card-header
-    >}
+      </mat-card-subtitle>
+    </mat-card-header>
+
     <mat-card-content class="p-3">
       <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
         <mat-form-field class="w-100 mt-1" appearance="outline">
           <mat-label>Username</mat-label>
-          <input
-            matInput
-            placeholder="Username"
-            formControlName="username"
-            required
-          />
-          @if ( loginFormControl.username.touched &&
-          loginFormControl.username.errors?.['required'] ) {
-          <mat-error>Username is required</mat-error>
-          }
+          <input matInput
+                 placeholder="Username"
+                 formControlName="username"
+                 required />
+          <mat-error *ngIf="loginFormControl.username.touched && loginFormControl.username.hasError('required')">
+            Username is required
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="w-100 mt-1" appearance="outline">
           <mat-label>Password</mat-label>
-          <input
-            matInput
-            placeholder="Password"
-            formControlName="password"
-            [type]="showPassword ? 'text' : 'password'"
-            required
-          />
-          <mat-icon matSuffix (click)="showPassword = !showPassword">{{
-            showPassword ? "visibility" : "visibility_off"
-          }}</mat-icon>
-          @if ( loginFormControl.password.touched &&
-          loginFormControl.password.errors?.['required'] ) {
-          <mat-error>Password is required</mat-error>
-          }
+          <input matInput
+                 placeholder="Password"
+                 formControlName="password"
+                 [type]="showPassword ? 'text' : 'password'"
+                 required />
+          <mat-icon matSuffix (click)="showPassword = !showPassword">
+            {{ showPassword ? "visibility" : "visibility_off" }}
+          </mat-icon>
+          <mat-error *ngIf="loginFormControl.password.touched && loginFormControl.password.hasError('required')">
+            Password is required
+          </mat-error>
         </mat-form-field>
+
         <mat-card-actions align="end">
-          <button mat-raised-button color="primary">Login</button>
+          <button mat-raised-button color="primary" type="submit">Login</button>
         </mat-card-actions>
       </form>
     </mat-card-content>
   </mat-card>
 </div>
+
