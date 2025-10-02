@@ -1,0 +1,52 @@
+/* Page background remains default */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Grey card body */
+.grey-card {
+  background-color: #2e2e2e; /* dark grey card */
+  color: #ffffff;
+}
+
+/* Black header only */
+.black-header {
+  background-color: #000000; /* black header */
+  color: #ffffff;
+}
+
+/* Card text and error messages */
+.grey-card .mat-card-header,
+.grey-card mat-card-title,
+.grey-card mat-card-subtitle,
+.grey-card mat-error {
+  color: #ffffff;
+}
+
+/* Form input and placeholder */
+.grey-card mat-form-field .mat-input-element {
+  color: #ffffff;
+}
+
+.grey-card mat-form-field .mat-placeholder {
+  color: #ccc;
+}
+
+/* Icon color */
+.grey-card mat-icon {
+  color: #ffffff;
+}
+
+/* Buttons */
+button.mat-raised-button {
+  color: #fff;
+}
+
+/* Card shadow */
+.grey-card.mat-elevation-z4 {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
